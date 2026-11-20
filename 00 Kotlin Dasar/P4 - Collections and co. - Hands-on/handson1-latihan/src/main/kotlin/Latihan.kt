@@ -7,10 +7,12 @@ data class Product(val nama: String, val harga: Int, val stok: Int)
 
 fun produkDiAtasHarga(produk: List<Product>, minHarga: Int): List<String> {
     // TODO 1: Saring (filter) produk yang harga-nya > minHarga
+    val tersaring = produk.filter { it.harga > minHarga }
     // TODO 2: Urutkan (sortedBy) hasil saringan dari harga termurah
+    val terurut = tersaring.sortedBy { it.harga }
     // TODO 3: Ubah (map) menjadi List<String> berisi nama produk saja
 
-    return emptyList()
+    return terurut.map { it.nama }
 }
 
 fun main() {
