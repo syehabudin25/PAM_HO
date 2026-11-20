@@ -1,5 +1,6 @@
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.jvm.javaField
 
 // Hands-on 3: Custom Annotation + Reflection Validator
 // Tugas: Buat annotation class @Required, lalu fungsi validate(obj) yang
@@ -13,7 +14,9 @@ import kotlin.reflect.full.findAnnotation
 //         Jangan lupa @Target(AnnotationTarget.FIELD) dan
 //         @Retention(AnnotationRetention.RUNTIME) — tanpa RUNTIME,
 //         annotation tidak akan terbaca saat reflection!
-// annotation class Required
+@Target(AnnotationTarget.FIELD)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Required
 
 data class RegistrasiForm(
     @Required val nama: String,
@@ -25,13 +28,23 @@ fun validate(obj: Any): List<String> {
     val gagal = mutableListOf<String>()
 
     // TODO 2: Iterasi memberProperties dari obj::class
-    // TODO 3: Untuk tiap property, cek apakah punya annotation @Required
-    //         dengan property.javaField?.getAnnotation(Required::class.java) != null
-    //         (atau bila menganotasi property Kotlin: findAnnotation<Required>())
-    // TODO 4: Jika beranotasi @Required, ambil nilainya dengan property.getter.call(obj)
-    // TODO 5: Jika nilai null ATAU (String dan blank), tambahkan property.name ke `gagal`
+    for (property in obj::class.memberProperties) {
 
-    // Kode kamu di sini...
+        // TODO 3: Untuk tiap property, cek apakah punya annotation @Required
+        //         dengan property.javaField?.getAnnotation(Required::class.java) != null
+        //         (atau bila menganotasi property Kotlin: findAnnotation<Required>())
+        val wajib = property.javaField?.getAnnotation(Required::class.java) != null
+
+        if (wajib) {
+            // TODO 4: Jika beranotasi @Required, ambil nilainya dengan property.getter.call(obj)
+            val nilai = property.getter.call(obj)
+
+            // TODO 5: Jika nilai null ATAU (String dan blank), tambahkan property.name ke `gagal`
+            if (nilai == null || (nilai is String && nilai.isBlank())) {
+                gagal.add(property.name)
+            }
+        }
+    }
 
     return gagal
 }

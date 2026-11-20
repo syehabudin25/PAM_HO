@@ -9,9 +9,14 @@ data class Mahasiswa(val nim: String, val nama: String, val ipk: Double)
 
 fun printFields(obj: Any) {
     // TODO 1: Ambil KClass dari obj (gunakan obj::class)
+    val kclass = obj::class
     // TODO 2: Iterasi memberProperties dari KClass tersebut
+    for (property in kclass.memberProperties) { 
     // TODO 3: Untuk setiap property, panggil property.getter.call(obj)
     //         untuk mendapatkan nilainya, lalu cetak "namaProperty = nilai"
+    val nilai = property.getter.call(obj)                    
+    println("${property.name} = $nilai")                    
+    }
 
     // Kode kamu di sini...
 }

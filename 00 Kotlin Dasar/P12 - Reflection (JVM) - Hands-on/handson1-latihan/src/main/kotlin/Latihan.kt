@@ -11,9 +11,15 @@ fun main() {
     val product = Product("Kopi Susu", 18000)
 
     // TODO 1: Ambil KClass dari objek product, misal dengan `product::class`
+    val kclass = product::class
     // TODO 2: Cetak nama kelasnya dengan `.simpleName`
+    println("Kelas: ${product::class.simpleName}")
     // TODO 3: Iterasi `memberProperties` dari KClass tersebut, cetak `.name`
     //         setiap property (gunakan import kotlin.reflect.full.memberProperties di atas)
+    println("Properties:")
+    for (prop in product::class.memberProperties) {
+        println("- ${prop.name}")
+    }
 
     // Kode kamu di sini...
 
