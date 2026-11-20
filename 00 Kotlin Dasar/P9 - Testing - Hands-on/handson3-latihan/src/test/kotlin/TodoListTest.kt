@@ -21,14 +21,14 @@ class TodoListTest {
         // TODO: inisialisasi todoList dengan TodoList() yang baru.
         // Method ini dijalankan ULANG sebelum SETIAP @Test, jadi setiap test
         // selalu mulai dari kondisi kosong yang sama.
+        todoList = TodoList()
     }
 
     @Test
     @DisplayName("TodoList baru harus kosong")
     fun testNewListIsEmpty() {
         // TODO: assertTrue(todoList.isEmpty())
-
-        fail("TODO: lengkapi testNewListIsEmpty()")
+        assertTrue(todoList.isEmpty())
     }
 
     @Test
@@ -37,7 +37,8 @@ class TodoListTest {
         // TODO 1 (Act): todoList.add("Belajar Kotlin")
         // TODO 2 (Assert): assertEquals(1, todoList.size())
 
-        fail("TODO: lengkapi testAddIncreasesSize()")
+        todoList.add("Belajar Kotlin")
+        assertEquals(1, todoList.size())
     }
 
     @Test
@@ -46,7 +47,10 @@ class TodoListTest {
         // TODO 1 (Arrange): todoList.add("Belajar Kotlin")
         // TODO 2 (Act): val removed = todoList.remove("Belajar Kotlin")
         // TODO 3 (Assert): assertTrue(removed) dan assertEquals(0, todoList.size())
+        todoList.add("Belajar Kotlin")
+        val removed = todoList.remove("Belajar Kotlin")
 
-        fail("TODO: lengkapi testRemoveExistingItem()")
+        assertTrue(removed)
+        assertEquals(0, todoList.size())
     }
 }
