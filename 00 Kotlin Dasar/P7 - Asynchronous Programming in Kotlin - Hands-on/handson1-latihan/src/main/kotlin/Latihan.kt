@@ -26,7 +26,7 @@ fun main() = runBlocking {
 
     println("Menunggu status pesanan...")
 
-    // Kode kamu di sini...
+    // Kode kamu di sini..
     val status = checkOrderStatus("A100")
     println(status)
 }

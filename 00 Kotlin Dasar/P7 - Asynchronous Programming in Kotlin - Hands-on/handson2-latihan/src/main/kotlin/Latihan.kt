@@ -37,5 +37,5 @@ fun main() = runBlocking {
     val total = totalDeferred.await()
     println("Total belanja: Rp$total")
 
-    // Kode kamu di sini...
+    // Kode kamu di sini..
 }

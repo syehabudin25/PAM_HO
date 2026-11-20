@@ -47,7 +47,7 @@ fun main() = runBlocking {
 
     println("Membatalkan sisa download...")
     // TODO 4: Batalkan parentJob dengan cancel() — video.mp4 (durasi 3000ms)
-    //         seharusnya TIDAK sempat mencetak "selesai di-download".
+    //         seharusnya TIDAK sempat mencetak "selesai di-download"
     parentJob.cancel()
 
     delay(2000) // Tunggu untuk membuktikan video.mp4 memang tidak selesai
